@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, FlatList, Text } from "react-native";
+import { StyleSheet, View, FlatList, Text, Alert } from "react-native";
 import AddTodo from "./components/AddTodo";
 import Header from "./components/Header";
 import TodoItem from "./components/TodoItem";
@@ -42,12 +42,25 @@ export default function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.key != key));
   };
 
+  const submitHandler = (text) => {
+    if (text.length > 3) {
+      setTodos((prevTodos) => [
+        { text: text, key: Math.random().toString() },
+        ...prevTodos,
+      ]);
+    } else {
+      Alert.alert("OOPS", "Todos Must be over 3 Characters long", [
+        { text: "Understood", onPress: () => console.log("Alert Closed") },
+      ]);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Header />
       <View style={styles.content}>
         <View style={styles.list}>
-          <AddTodo/>
+          <AddTodo submitHandler={submitHandler} todos={todos} />
           <FlatList
             data={todos}
             renderItem={({ item }) => (
