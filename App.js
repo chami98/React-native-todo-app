@@ -73,8 +73,8 @@ export default function App() {
       <View style={styles.container}>
         <Header />
         <View style={styles.content}>
+          <AddTodo submitHandler={submitHandler} todos={todos} />
           <View style={styles.list}>
-            <AddTodo submitHandler={submitHandler} todos={todos} />
             <FlatList
               data={todos}
               renderItem={({ item }) => (
@@ -95,8 +95,10 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 40,
+    flex: 1,
   },
   list: {
     marginTop: 20,
+    flex: 1,
   },
 });
