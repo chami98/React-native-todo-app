@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, FlatList, Text } from "react-native";
+import AddTodo from "./components/AddTodo";
 import Header from "./components/Header";
 import TodoItem from "./components/TodoItem";
 
@@ -46,6 +47,7 @@ export default function App() {
       <Header />
       <View style={styles.content}>
         <View style={styles.list}>
+          <AddTodo/>
           <FlatList
             data={todos}
             renderItem={({ item }) => (
